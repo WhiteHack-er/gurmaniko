@@ -1,0 +1,721 @@
+// 🅰️ ШРИФТЫ И ПЕРЕМЕННЫЕ
+$main-color: #0c350f; // Бордовый
+$bg-color: #fffdf6; // Кремовый
+$text-color: #2d2d2d;
+$accent-color: #f56e14; // Золотистый
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+
+
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  background-color: $bg-color;
+  color: $text-color;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+// ✅ ХЕДЕР
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: $main-color;
+  color: white;
+  z-index: 1000;
+  padding: 1rem 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+  .header__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    color: white;
+    font-weight: 700; // делает жирнее
+    font-size: 1.6rem;
+    text-decoration: none; // убирает подчёркивание
+  }
+
+
+  .nav a {
+    color: white;
+    margin-left: 2rem;
+    text-decoration: none;
+    font-weight: 500;
+
+    &:hover {
+      color: $accent-color;
+    }
+  }
+}
+
+// ✅ Burger menu
+
+.burger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+  z-index: 1001;
+
+  span {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+  }
+}
+
+@media (max-width: 768px) {
+  .burger {
+    display: flex;
+  }
+
+  .nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: $main-color;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0;
+    display: none;
+  }
+
+  .nav.active {
+    display: flex;
+  }
+
+  .header__content {
+    justify-content: space-between;
+  }
+}
+
+
+
+// ✅ HERO-БЛОК
+
+.brand {
+  color: #1a9422 !important;
+  font-weight: 700;
+}
+
+.hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  text-align: center;
+  color: white;
+
+  &__video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__content {
+    z-index: 2;
+    max-width: 700px;
+    padding: 0 20px;
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+
+      span {
+        color: $accent-color;
+      }
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+  }
+}
+
+
+
+// ✅ КНОПКИ
+.btn {
+  display: inline-block;
+  background-color: $accent-color;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.3s;
+
+  &:hover {
+    background-color: darken($accent-color, 10%);
+  }
+}
+
+
+// ✅ МЕНЮ
+.menu {
+  padding: 4rem 0;
+  background-color: white;
+  text-align: center;
+
+  h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: $main-color;
+  }
+
+  &__categories {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  &__item {
+    background-color: $bg-color;
+    border: 2px solid $accent-color;
+    border-radius: 12px;
+    padding: 1rem 2rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: default;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: $accent-color;
+      color: white;
+    }
+  }
+}
+
+
+// ✅ ВСПЛЫВАЮЩАЯ ФОРМА
+.popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  z-index: 9999;
+  padding-top: 5vh;
+
+  &.hidden {
+    display: none;
+  }
+
+  &__content {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    max-width: 400px;
+    width: 100%;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+
+    h3 {
+      margin-top: 0;
+      text-align: center;
+      color: $main-color;
+    }
+
+    form input,
+    form button {
+      display: block;
+      width: 100%;
+      margin: 0.5rem 0;
+      padding: 0.75rem 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: inherit;
+      box-sizing: border-box;
+      appearance: none;
+      background-color: #fff;
+    }
+
+
+    form input[type="date"],
+    form input[type="time"] {
+      position: relative;
+      padding-right: 2.5rem;
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      background-size: 1.2rem;
+
+      &::-webkit-calendar-picker-indicator {
+        filter: invert(0.5);
+        cursor: pointer;
+      }
+    }
+
+
+
+    form button {
+      background-color: $accent-color;
+      color: white;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+
+      &:hover {
+        background-color: darken($accent-color, 10%);
+      }
+    }
+  }
+
+  &__close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #333;
+
+    &:hover {
+      color: red;
+    }
+  }
+}
+
+
+// ✅ Бронирование
+.reservation {
+  text-align: center;
+
+  .open-popup {
+    margin-bottom: 2rem;
+  }
+
+  .reservation__actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+
+    a.btn {
+      min-width: 200px;
+      text-align: center;
+    }
+  }
+}
+
+form label {
+  display: block;
+  text-align: left;
+  margin-bottom: 1rem;
+
+  span {
+    display: block;
+    margin-bottom: 0.3rem;
+    font-size: 0.95rem;
+    color: #444;
+  }
+
+  input {
+    width: 100%;
+  }
+}
+
+#reservation-title {
+  scroll-margin-top: 100px; // или столько, сколько высота твоего header
+}
+
+
+
+// ✅ ФУТЕР
+
+.footer {
+  background-color: $main-color;
+  color: white;
+  text-align: center;
+  padding: 1.5rem 0;
+  font-size: 0.95rem;
+  margin-top: 3rem;
+
+  p {
+    margin: 0;
+  }
+}
+
+// ✅ Контакты
+
+.contacts {
+  background-color: $bg-color;
+  padding: 4rem 1rem;
+  text-align: center;
+
+  h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: $main-color;
+  }
+
+  p {
+    font-size: 1.1rem;
+    margin-bottom: 0.8rem;
+
+    a {
+      color: $main-color;
+      text-decoration: none;
+      font-weight: 600;
+
+      &:hover {
+        color: $accent-color;
+      }
+    }
+  }
+}
+
+
+// всплювающие блюда
+
+.menu-popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+
+  &.hidden {
+    display: none;
+  }
+
+  &__content {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 12px;
+    max-width: 1000px;
+    width: 95%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+  }
+
+  &__close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #333;
+  }
+
+  &__grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    margin-top: 1.5rem;
+  }
+
+  &__item {
+    text-align: center;
+
+    img {
+      width: 100%;
+      border-radius: 10px;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      margin-bottom: 0.5rem;
+    }
+
+    h4 {
+      margin: 0.5rem 0 0.3rem;
+      font-weight: 600;
+    }
+
+    p {
+      font-size: 0.95rem;
+      color: #555;
+    }
+    .price {
+      display: inline-block;
+      margin-top: 0.3rem;
+      font-weight: 600;
+      color: #b43f24;
+      font-size: 1.1rem;
+    }
+    
+  }
+}
+
+
+
+// ✅ кнопка вверх
+
+.to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: $accent-color;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 999;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+  &.visible {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@media (max-width: 480px) {
+  .to-top {
+    bottom: 20px;
+    right: 20px; // ← добавили больше воздуха
+    width: 45px;
+    height: 45px;
+    font-size: 1.1rem;
+    padding: 0;
+    line-height: 45px;
+    text-align: center;
+  }
+}
+
+// ✅ Галлерея
+.gallery__slider {
+  overflow: hidden;
+  position: relative;
+  border-radius: 10px;
+  margin-top: 2rem;
+}
+
+.gallery__track {
+  display: flex;
+  animation: scrollSlider 30s linear infinite;
+  gap: 1rem;
+
+  img {
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 300px;
+    border-radius: 8px;
+    object-fit: cover;
+    aspect-ratio: 4 / 3;
+  }
+}
+
+@keyframes scrollSlider {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+// Адаптив
+@media (max-width: 768px) {
+  .gallery__track {
+    animation-duration: 20s;
+
+    img {
+      max-width: 200px;
+    }
+  }
+}
+
+
+
+
+
+// ✅ АДАПТИВ
+@media (max-width: 768px) {
+  .header .nav a {
+    margin-left: 1rem;
+    font-size: 0.95rem;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .hero .btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.95rem;
+  }
+
+  .menu__item {
+    flex: 0 1 45%;
+    font-size: 1rem;
+    padding: 1rem;
+  }
+
+  .reservation__actions a.btn {
+    min-width: 100%;
+  }
+
+  .popup__content {
+    padding: 1.5rem 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .menu__item {
+    flex: 0 1 100%;
+  }
+
+  .hero h1 {
+    font-size: 1.6rem;
+  }
+
+  .header .logo {
+    font-size: 1.2rem;
+  }
+
+  .popup__content {
+    padding: 1rem;
+  }
+
+  form input,
+  form button {
+    font-size: 1rem;
+    padding: 0.6rem 0.8rem;
+  }
+
+}
+
+
+// ========================================================================
+
+.menu-popup__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-top: 1.5rem;
+}
+
+.menu-popup__line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.05rem;
+  border-bottom: 1px dashed #ccc;
+  padding-bottom: 0.4rem;
+}
+
+.menu-popup__line .dish-name {
+  font-weight: 500;
+}
+
+.menu-popup__line .price {
+  font-weight: 600;
+  color: #b43f24;
+}
+
+
+// ---
+.menu-popup__item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  h4 {
+    min-height: 2.2rem;
+  }
+
+  p {
+    min-height: 3.2rem;
+  }
+
+  .price {
+    margin-top: 1rem;
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-weight: 600;
+    color: #b43f24;
+    font-size: 1.1rem;
+  }
+  
+}
+
+
+
+// RU/EN
+
+.lang-btn {
+  text-decoration: none;
+  border: 2px solid #fff;
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+  font-weight: 600;
+  color: #fff;
+  transition: all 0.3s ease;
+  margin-left: 0.5rem;
+
+  &:hover {
+    background-color: #fff;
+    color: #000;
+  }
+
+  &.active {
+    background-color: #fff;
+    color: #000;
+  }
+}
+
+
+
+
+.reservation-text {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  color: #222;
+  text-align: center;
+}
