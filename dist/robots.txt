@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://gurmaniko.ru/sitemap.xml
+Sitemap: https://gurmaniko.netlify.app/sitemap.xml

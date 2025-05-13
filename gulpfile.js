@@ -18,6 +18,7 @@ const paths = {
   content: { src: 'content/**/*', dest: 'dist/content/' },
   seo: { src: 'src/*.txt', dest: 'dist/' },
   sitemap: { src: 'src/*.xml', dest: 'dist/' },
+  headers: { src: 'src/_headers', dest: 'dist/' },
 };
 
 // Удаление папки dist
@@ -86,6 +87,12 @@ function sitemap() {
     .pipe(dest(paths.sitemap.dest));
 }
 
+// Копируем _headers
+function headers() {
+  return src(paths.headers.src)
+    .pipe(dest(paths.headers.dest));
+}
+
 // Сервер + слежка за файлами
 function serve() {
   browserSync.init({
@@ -102,12 +109,13 @@ function serve() {
   watch(paths.content.src, content).on('change', browserSync.reload);
   watch(paths.seo.src, seo).on('change', browserSync.reload);
   watch(paths.sitemap.src, sitemap).on('change', browserSync.reload);
+  watch(paths.headers.src, headers).on('change', browserSync.reload);
 }
 
 // Сборка проекта
 const build = series(
   clean,
-  parallel(html, styles, scripts, images, fonts, admin, content, seo, sitemap)
+  parallel(html, styles, scripts, images, fonts, admin, content, seo, sitemap, headers)
 );
 
 // Экспорт задач
