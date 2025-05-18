@@ -12,7 +12,6 @@ const paths = {
   html: { src: 'src/*.html', dest: 'dist/' },
   styles: { src: 'src/scss/**/*.scss', dest: 'dist/css/' },
   scripts: { src: 'src/js/**/*.js', dest: 'dist/js/' },
-  images: { src: 'src/images/**/*', dest: 'dist/images/' },
   fonts: { src: 'src/fonts/**/*', dest: 'dist/fonts/' },
   admin: { src: 'src/admin/**/*', dest: 'dist/admin/' },
   content: { src: 'content/**/*', dest: 'dist/content/' },
@@ -50,11 +49,20 @@ function scripts() {
     .pipe(browserSync.stream());
 }
 
-// Картинки → сжатие
+// Картинки → копируем всё, кроме .jpg/.jpeg/.png
 function images() {
-  return src(paths.images.src)
-    .pipe(imagemin())
-    .pipe(dest(paths.images.dest));
+  return src([
+    'src/images/**/*',
+    '!src/images/**/*.jpg',
+    '!src/images/**/*.jpeg',
+    '!src/images/**/*.png'
+  ])
+    .pipe(dest('dist/images'));
+}
+
+// Удаление .jpg/.jpeg/.png из dist/images
+function cleanImages() {
+  return del(['dist/images/**/*.jpg', 'dist/images/**/*.jpeg', 'dist/images/**/*.png']);
 }
 
 // Шрифты → просто копирование
@@ -104,7 +112,7 @@ function serve() {
   watch(paths.html.src, html).on('change', browserSync.reload);
   watch(paths.styles.src, styles);
   watch(paths.scripts.src, scripts);
-  watch(paths.images.src, images).on('change', browserSync.reload);
+  watch('src/images/**/*', images).on('change', browserSync.reload);
   watch(paths.admin.src, admin).on('change', browserSync.reload);
   watch(paths.content.src, content).on('change', browserSync.reload);
   watch(paths.seo.src, seo).on('change', browserSync.reload);
@@ -115,6 +123,7 @@ function serve() {
 // Сборка проекта
 const build = series(
   clean,
+  cleanImages,
   parallel(html, styles, scripts, images, fonts, admin, content, seo, sitemap, headers)
 );
 
