@@ -6,7 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Гурманико — Грузинский ресторан в центре города</title>
-  <meta name="description" content="Аутентичные грузинские блюда: хачапури, хинкали, шашлыки, вино. Бронирование столиков, тёплая атмосфера, вкус как дома." />
+  <meta name="description"
+    content="Аутентичные грузинские блюда: хачапури, хинкали, шашлыки, вино. Бронирование столиков, тёплая атмосфера, вкус как дома." />
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="images/chefs-hat.svg" />
@@ -23,12 +24,12 @@
   <meta name="twitter:title" content="Гурманико — Грузинский ресторан" />
   <meta name="twitter:description" content="Настоящая грузинская кухня. Хачапури, хинкали, шашлыки и вино." />
   <meta name="twitter:image" content="https://gurmaniko.netlify.app/images/preview.webp" />
-  
+
   <!-- Fonts & Styles -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
-  
+
   <meta name="msvalidate.01" content="C9E20DB8E13F8B4F4A9A8327A7C49D6A" />
 </head>
 
@@ -65,18 +66,13 @@
 
   <!-- ✅ 2. HERO-БЛОК -->
   <section class="hero">
-    <video class="hero__video"
-  autoplay
-  muted
-  loop
-  playsinline
-  preload="auto"
-  disablePictureInPicture
-  controlsList="nodownload nofullscreen noremoteplayback"
-  style="pointer-events: none;">
-  <source src="images/bg.mov" type="video/mp4" />
-  Ваш браузер не поддерживает видео.
-</video>
+    <video class="hero__video" autoplay muted loop playsinline preload="none" poster="images/bg-poster.webp"
+      disablePictureInPicture controlsList="nodownload nofullscreen noremoteplayback" style="pointer-events: none;">
+      <source src="images/bg.webm" type="video/webm" />
+      Ваш браузер не поддерживает видео.
+    </video>
+
+
 
     <div class="hero__overlay">
       <div class="container">
@@ -235,14 +231,16 @@
         </div>
 
         <div class="menu-popup__item">
-          <img loading="lazy" src="images/food/salads/06_eggplant_cheese.webp" alt="Салат с хрустящими баклажанами и творожным сыром" />
+          <img loading="lazy" src="images/food/salads/06_eggplant_cheese.webp"
+            alt="Салат с хрустящими баклажанами и творожным сыром" />
           <h4>Салат с хрустящими баклажанами и творожным сыром</h4>
           <p>Жаренные хрустящие баклажаны, нежный творожный сыр, томаты, мята, базелик, кунжут</p>
           <span class="price">590 ₽</span>
         </div>
 
         <div class="menu-popup__item">
-          <img loading="lazy" src="images/food/salads/05_eggplant_shrimp.webp" alt="Салат с хрустящими баклажанами и креветками" />
+          <img loading="lazy" src="images/food/salads/05_eggplant_shrimp.webp"
+            alt="Салат с хрустящими баклажанами и креветками" />
           <h4>Салат с хрустящими баклажанами и креветками</h4>
           <p>Нежно жаренные креветки, томаты, хрустящий баклажан, листья салата, базелик, мята, заправленные фирменным
             соусом </p>
